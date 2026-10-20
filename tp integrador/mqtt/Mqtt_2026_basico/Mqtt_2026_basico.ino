@@ -6,10 +6,10 @@
 
 
 //////wifi
-const char* ssid = "MECA-IoT";
-const char* password = "IoT$2025";
+const char* ssid = "MECA-IoT-V2";
+const char* password = "IoT$2026";
 
-const char name_device = 111;  ////device numero de grupo 5A 11x siendo x el numero de grupo
+const uint8_t name_device = 111; ////device numero de grupo 5A 11x siendo x el numero de grupo
                              ///                        5B 12x siendo x el numero de grupo
                              /// 5a grupo 4 => 114
                              /// 5b grupo 3 => 123
@@ -88,7 +88,10 @@ void fun_envio_mqtt() {
   {
     Serial.print("enviando");
     ////genero el string a enviar 1. 2.   3.   4.   5.   6.   7   8 910.       1.         2.        3.      4.       5.           6.   7.        8.        9         10
-    snprintf(mqtt_payload, 150, "%u&%ld&%.2f&%.2f&%.2f&%.2f&%.2f&%u%u&%u", name_device, aux2.time, aux2.T1, aux2.P1, aux2.luz, aux2.G1, aux2.cor, aux2.pre,aux2.oct, aux2.Alarma);  //random(10,50)
+    snprintf(mqtt_payload, sizeof(mqtt_payload), 
+         "%d&%ld&%.2f&%.2f&%.2f&%.2f&%.2f&%u&%u&%u", 
+         name_device, aux2.time, aux2.T1, aux2.P1, aux2.luz, 
+         aux2.G1, aux2.cor, aux2.pre, aux2.oct, aux2.Alarma);
     aux2.time = 0;                                                                                                                                                   ///limpio valores
     aux2.T1 = 0;
     aux2.P1 = 0;
@@ -203,13 +206,13 @@ void fun_entra(void) {
   Serial.println(&timeinfo, "%A, %B %d %Y %H:%M:%S");
   ///////////////////////// fin de consigo la hora
   datos_struct[indice_entra].time = timestamp;
-  datos_struct[indice_entra].T1 = 20;  /// leeo los datos //aca va la funcion de cada sensor
-  datos_struct[indice_entra].P1 = 30;  //// se puede pasar por un parametro valor entre 0 y 100
-  datos_struct[indice_entra].luz = 30;
-  datos_struct[indice_entra].G1 = 1.5;
-  datos_struct[indice_entra].cor = 1.5;
-  datos_struct[indice_entra].pre = 1;
-  datos_struct[indice_entra].oct = 1;
+  datos_struct[indice_entra].T1 = 3;  /// leeo los datos //aca va la funcion de cada sensor
+  datos_struct[indice_entra].P1 = 4;  //// se puede pasar por un parametro valor entre 0 y 100
+  datos_struct[indice_entra].luz = 5;
+  datos_struct[indice_entra].G1 = 6;
+  datos_struct[indice_entra].cor = 7;
+  datos_struct[indice_entra].pre = 8;
+  datos_struct[indice_entra].oct = 9;
   datos_struct[indice_entra].Alarma = 1;
 
   indice_entra++;
