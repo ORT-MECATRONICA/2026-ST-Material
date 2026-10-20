@@ -51,12 +51,12 @@ typedef struct
 {
   long time;
   float T1;  ///temp en grados
-  float H1;  ///valor entre 0 y 99 // mojado es cercano al 100
+  float H1;  ///valor presion entre 0 y 99 
   float luz;  ///valor entre 0 y 99 . si hay luz es cercano al 100 
-  float G1; ///valor entre 0 y 99 
-  float G2; ///valor entre 0 y 99
-  bool oct; ///Lectura del octoacoplador
-  bool Alarma; // 
+  float G1; ///valor gas entre 0 y 99 
+  float G2; ///valor corriente entre 0 y 99
+  bool oct; ///Lectura sensores de presencia 1 presencia 0 no presencia
+  bool Alarma; // si se supera un umbral
 
 } estructura;
 ////////////////
