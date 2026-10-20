@@ -51,10 +51,11 @@ typedef struct
 {
   long time;
   float T1;  ///temp en grados
-  float H1;  ///valor presion entre 0 y 99 
+  float P1;  ///valor presion entre 0 y 99 
   float luz;  ///valor entre 0 y 99 . si hay luz es cercano al 100 
   float G1; ///valor gas entre 0 y 99 
-  float G2; ///valor corriente entre 0 y 99
+  float cor; ///valor corriente entre 0 y 99
+  bool pre; ///Lectura sensores de presencia 1 presencia 0 no presencia
   bool oct; ///Lectura sensores de presencia 1 presencia 0 no presencia
   bool Alarma; // si se supera un umbral
 
@@ -86,14 +87,15 @@ void fun_envio_mqtt() {
   if (flag_vacio == 0)  ////si hay los envio
   {
     Serial.print("enviando");
-    ////genero el string a enviar 1. 2.   3.   4.   5.   6.   7   8  9.       1.         2.        3.      4.       5.           6.   7.        8.        9
-    snprintf(mqtt_payload, 150, "%u&%ld&%.2f&%.2f&%.2f&%.2f&%.2f&%u&%u", name_device, aux2.time, aux2.T1, aux2.H1, aux2.luz, aux2.G1, aux2.G2, aux2.oct, aux2.Alarma);  //random(10,50)
+    ////genero el string a enviar 1. 2.   3.   4.   5.   6.   7   8 910.       1.         2.        3.      4.       5.           6.   7.        8.        9         10
+    snprintf(mqtt_payload, 150, "%u&%ld&%.2f&%.2f&%.2f&%.2f&%.2f&%u%u&%u", name_device, aux2.time, aux2.T1, aux2.P1, aux2.luz, aux2.G1, aux2.cor, aux2.pre,aux2.oct, aux2.Alarma);  //random(10,50)
     aux2.time = 0;                                                                                                                                                   ///limpio valores
     aux2.T1 = 0;
-    aux2.H1 = 0;
+    aux2.P1 = 0;
     aux2.luz = 0;
     aux2.G1 = 0;
-    aux2.G2 = 0;
+    aux2.cor = 0;
+    aux2.pre = 0;
     aux2.oct = 0;
     aux2.Alarma = 0;
 
@@ -160,10 +162,11 @@ void fun_saca() {
   if (indice_saca != indice_entra) {
     aux2.time = datos_struct[indice_saca].time;
     aux2.T1 = datos_struct[indice_saca].T1;
-    aux2.H1 = datos_struct[indice_saca].H1;
+    aux2.P1 = datos_struct[indice_saca].P1;
     aux2.luz = datos_struct[indice_saca].luz;
     aux2.G1 = datos_struct[indice_saca].G1;
-    aux2.G2 = datos_struct[indice_saca].G2;
+    aux2.cor = datos_struct[indice_saca].cor;
+    aux2.pre = datos_struct[indice_saca].pre;
     aux2.oct = datos_struct[indice_saca].oct;
     aux2.Alarma = datos_struct[indice_saca].Alarma;
 
@@ -201,11 +204,12 @@ void fun_entra(void) {
   ///////////////////////// fin de consigo la hora
   datos_struct[indice_entra].time = timestamp;
   datos_struct[indice_entra].T1 = 20;  /// leeo los datos //aca va la funcion de cada sensor
-  datos_struct[indice_entra].H1 = 30;  //// se puede pasar por un parametro valor entre 0 y 100
+  datos_struct[indice_entra].P1 = 30;  //// se puede pasar por un parametro valor entre 0 y 100
   datos_struct[indice_entra].luz = 30;
   datos_struct[indice_entra].G1 = 1.5;
-  datos_struct[indice_entra].G2 = 1.5;
-  datos_struct[indice_entra].oct = 1.5;
+  datos_struct[indice_entra].cor = 1.5;
+  datos_struct[indice_entra].pre = 1;
+  datos_struct[indice_entra].oct = 1;
   datos_struct[indice_entra].Alarma = 1;
 
   indice_entra++;
