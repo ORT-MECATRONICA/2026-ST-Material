@@ -36,7 +36,7 @@ int indice_saca = 0;
 bool flag_vacio = 1;
 
 /////mqqtt
-#define MQTT_HOST IPAddress(192, 168, 5, 123)  ///se debe cambiar por el ip de meca o hall del 4
+#define MQTT_HOST IPAddress(192, 168, 10, 151)  ///se debe cambiar por el ip de meca o hall del 4
 #define MQTT_PORT 1884
 #define MQTT_USERNAME "esp32"
 #define MQTT_PASSWORD "mirko15"
