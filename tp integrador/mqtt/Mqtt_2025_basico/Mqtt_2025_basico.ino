@@ -9,10 +9,12 @@
 const char* ssid = "MECA-IoT";
 const char* password = "IoT$2025";
 
-const char name_device = 111;  ////device numero de grupo 5A 1x siendo x el numero de grupo
-                             ///                        5B 2x siendo x el numero de grupo
-                             /// 5a grupo 4 => 14
-                             /// 5b grupo 3 => 23
+const char name_device = 111;  ////device numero de grupo 5A 11x siendo x el numero de grupo
+                             ///                        5B 12x siendo x el numero de grupo
+                             /// 5a grupo 4 => 114
+                             /// 5b grupo 3 => 123
+                            /// 5C grupo 3 => 133
+      
 // Timers auxiliar variables//////////////////////////
 unsigned long now = millis();    ///valor actual
 unsigned long lastMeasure1 = 0;  ///variable para contar el tiempo actual
