@@ -7,7 +7,7 @@
 
 //////wifi
 const char* ssid = "POCO";        // <-- Cambiar si usas Wi-Fi externo
-const char* password = "mirko8787";        // <-- Cambiar clave de Wi-Fi
+const char* password = "mirk";        // <-- Cambiar clave de Wi-Fi
 
 const uint8_t name_device = 222; //// device numero de grupo 5A 11x
                              ///                        5B 12x
